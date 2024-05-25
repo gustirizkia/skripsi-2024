@@ -6,7 +6,7 @@
         </div>
 
     </div>
-    <div class="mt-5 w-1/2 mx-auto">
+    <div class="mt-5 md:w-1/2 mx-auto">
         <p class="font-medium text-lg  text-center">
             Proses Pembayaran. Lakukan Pembayaran terlebih dahulu
             setelah itu pengacara akan menghubungi anda.
@@ -21,8 +21,8 @@
             <div class="font-semibold">
                 Informasi Transaksi
             </div>
-            <div class="mt-4 flex">
-                <div class="border rounded-lg px-6 py-3">
+            <div class="mt-4 md:flex">
+                <div class="border rounded-lg px-6 py-3 mb-3">
                     <div class="font-light text-sm">
                         Total Anggaran
                     </div>
@@ -30,7 +30,7 @@
                         Rp. {{ number_format($transaksi->nominal) }}
                     </div>
                 </div>
-                <div class="border rounded-lg px-6 py-3 ml-3">
+                <div class="border rounded-lg px-6 py-3 md:ml-3 mb-3">
                     <div class="font-light text-sm">
                         Pengacara
                     </div>
@@ -38,7 +38,7 @@
                         {{ $transaksi->pengacara->nama_lengkap }}
                     </div>
                 </div>
-                <div class="border rounded-lg px-6 py-3 ml-3">
+                <div class="border rounded-lg px-6 py-3 md:ml-3 mb-3">
                     <div class="font-light text-sm">
                         Nomor Transaksi
                     </div>
