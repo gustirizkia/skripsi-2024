@@ -22,7 +22,7 @@
             <div class="card mb-4">
                 <div class="card-body">
 
-                    <div class="d-flex justify-content-between">
+                    <div class="d-md-flex justify-content-between">
                         <div class="d-flex align-items-center">
                             <img src="{{ asset('storage/' . $item->pengacara->foto) }}" class="img-fluid img__lawyer">
                             <div class="ms-3">
@@ -46,13 +46,13 @@
                             </div>
                         </div>
                         <div class="">
-                            <div class="fw-bold mb-2 text-end">
+                            <div class="fw-bold mb-md-2 mt-2 mt-md-0 text-md-end">
                                 {{ $item->kode_transaksi }}
                             </div>
-                            <div class="fw-bold text-success text-end">
+                            <div class="fw-bold text-success text-md-end">
                                 Rp. {{ number_format($item->nominal) }}
                             </div>
-                            <div class="text-end text-secondary">
+                            <div class="text-md-end text-secondary">
                                 Status {{ $item->status_pembayaran }}
                             </div>
                         </div>
