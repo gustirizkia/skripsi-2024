@@ -15,8 +15,8 @@
             <ul class="navbar-nav pt-lg-3">
 
 
-                <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }} mt-3">
-                    <a class="nav-link" href="/dashboard">
+                <li class="nav-item {{ request()->is('user/profile') ? 'active' : '' }} mt-3">
+                    <a class="nav-link" href="/user/profile">
 
                         <span class="nav-link-title">
                             Profile

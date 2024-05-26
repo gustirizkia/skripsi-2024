@@ -169,6 +169,11 @@ class LawyerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Pengacara::findOrFail($id);
+
+        $data->delete();
+
+        return redirect()->back()
+            ->with("success", "Berhasil hapus data");
     }
 }

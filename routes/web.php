@@ -6,6 +6,7 @@ use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\LawyerController;
 use App\Http\Controllers\FE\TransaksiController;
 use App\Http\Controllers\ProsesHiringController;
+use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\TransaksiController as UserTransaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::middleware("auth")->group(function () {
 
     Route::prefix("user")->name("user.")->group(function () {
         Route::resource("transaksi", UserTransaksiController::class);
+        Route::resource("profile", ProfileController::class);
     });
 });
 

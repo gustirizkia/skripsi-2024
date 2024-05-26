@@ -51,43 +51,47 @@
         <div class="grid grid-flow-row grid-cols-12 gap-4 mt-14">
             <div class="md:col-span-2 col-span-12 hidden md:block">
                 <div class="font-bold">Filter</div>
-                <div class="rounded shadow w-full bg-white p-2 mt-4">
-                    <div class="text-sm font-semibold mb-2">Tipe</div>
-                    <div>
-                        <label class="inline-flex items-center ml-6">
-                            <input type="radio" class="form-radio" name="tipe" value="">
-                            <span class="ml-2">Populer</span>
-                        </label>
-                        <label class="inline-flex items-center ml-6">
-                            <input type="radio" class="form-radio" name="tipe" value="">
-                            <span class="ml-2">Terbaru</span>
-                        </label>
-                        <label class="inline-flex items-center ml-6">
-                            <input type="radio" class="form-radio" name="tipe" value="">
-                            <span class="ml-2">Paling sedikit</span>
-                        </label>
-                    </div>
-                    <hr class="my-3 bg-gray-700">
-                    <div class="text-sm font-semibold mb-2">Kategori Hukum</div>
-                    <div>
-                        @foreach ($kategori as $item)
+                <form action="">
+                    <div class="rounded shadow w-full bg-white p-2 mt-4">
+                        <div class="text-sm font-semibold mb-2">Tipe</div>
+                        <div>
                             <label class="inline-flex items-center ml-6">
-                                <input type="radio" class="form-radio" name="kategori" value="{{ $item->id }}">
-                                <span class="ml-2">{{ $item->nama }}</span>
+                                <input type="radio" class="form-radio"
+                                    {{ request()->get('tipe') === 'populer' ? 'checked' : '' }} name="tipe"
+                                    value="populer">
+                                <span class="ml-2">Populer</span>
                             </label>
-                        @endforeach
+                            <label class="inline-flex items-center ml-6">
+                                <input type="radio" class="form-radio" name="tipe"
+                                    {{ request()->get('tipe') === 'terbaru' ? 'checked' : '' }} value="terbaru">
+                                <span class="ml-2">Terbaru</span>
+                            </label>
+                        </div>
+                        <hr class="my-3 bg-gray-700">
+                        <div class="text-sm font-semibold mb-2">Kategori Hukum</div>
+                        <div>
+                            @foreach ($kategori as $item)
+                                <label class="inline-flex items-center ml-6">
+                                    <input type="radio" class="form-radio" name="kategori"
+                                        {{ (int) request()->get('kategori') === $item->id ? 'checked' : '' }}
+                                        value="{{ $item->id }}">
+                                    <span class="ml-2">{{ $item->nama }}</span>
+                                </label>
+                            @endforeach
 
+                        </div>
+                        <button type="submit"
+                            class="bg-hijau-custom text-white rounded-lg py-2 px-3 w-full text-center inline-block mt-6">
+                            Filter
+                        </button>
                     </div>
-                    <div class="bg-hijau-custom text-white rounded-lg py-2 px-3 w-full text-center inline-block mt-6">
-                        Filter
-                    </div>
-                </div>
+                </form>
 
             </div>
             <div class="md:col-span-10 col-span-12">
                 <div class="grid grid-flow-row grid-cols-12 gap-4">
                     @foreach ($pengacara as $item)
-                        <div class="md:col-span-4 col-span-12">
+                        <div class="md:col-span-6 col-span-12">
                             <div class="border shadow rounded-lg p-4 relative">
                                 <div class="flex">
                                     <img src="{{ asset("storage/$item->foto") }}" alt="image lawyer"

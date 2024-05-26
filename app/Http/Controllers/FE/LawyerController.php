@@ -12,11 +12,26 @@ class LawyerController extends Controller
     public function index(Request $request)
     {
         $kategori = KategoriHukum::get();
-        $pengacara = Pengacara::orderBy("id", "desc")->get();
+
+        $kategoriHukum = $request->kategori;
+        $tipe = $request->tipe;
+
+        $pengacara = Pengacara::query();
+
+        if ($kategoriHukum) {
+            $pengacara = $pengacara->where("kategori_hukum_id", $kategoriHukum);
+        }
+
+        if ($tipe === "populer") {
+        } else if ($tipe === "terbaru") {
+            $pengacara = $pengacara->orderBy("id", "desc");
+        } else {
+            $pengacara = $pengacara->inRandomOrder();
+        }
 
         return view("pages.lawyer.index", [
             'kategori' => $kategori,
-            'pengacara' => $pengacara
+            'pengacara' => $pengacara->get()
         ]);
     }
 }

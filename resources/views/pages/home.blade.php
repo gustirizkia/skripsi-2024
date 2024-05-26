@@ -17,7 +17,10 @@
             <div class="md:flex grid grid-cols-4 gap-4 justify-around mt-4">
                 @foreach ($kategori as $item)
                     <div>
-                        <img src="{{ asset('storage/' . $item->image) }}" class="md:w-28" alt="Hukum {{ $item->nama }}">
+                        <a href="{{ route('lawyer-page', ['kategori' => $item->id]) }}">
+                            <img src="{{ asset('storage/' . $item->image) }}" class="md:w-28"
+                                alt="Hukum {{ $item->nama }}">
+                        </a>
                     </div>
                 @endforeach
 
@@ -29,7 +32,7 @@
         {{-- Pengacara Populer --}}
         <div class="md:col-span-10 col-span-12 mt-8">
             <div class="grid grid-flow-row grid-cols-12 gap-4">
-                @foreach ($pengacara as $item)
+                @foreach ($pengacara as $index => $item)
                     <div class="md:col-span-4 col-span-12">
                         <div class="border shadow rounded-lg p-4 relative">
                             <div class="flex">
@@ -54,19 +57,22 @@
                                             Hukum {{ $item->kategori->nama }}
                                         </div>
                                     </div>
-                                    <div class="mt-1 flex">
-                                        <div class="text-gray-500 text-sm">
-                                            3 Client
+                                    @if (count($item->transaksi->where('status_pembayaran', '!=', 'Pembayaran ditolak')))
+                                        <div class="mt-1 flex">
+                                            <div class="text-gray-500 text-sm">
+                                                {{ count($item->transaksi->where('status_pembayaran', '!=', 'Pembayaran ditolak')) }}
+                                                Client
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="mt-2 font-semibold">
                                 Mulai dari Rp {{ number_format($item->harga_termurah) }}
                             </div>
-                            <div
+                            <a href="{{ route('proses-hiring', ['id' => $item->id]) }}"
                                 class="bg-hijau-custom py-2 px-14 mt-2 cursor-pointer rounded-lg inline-block text-white text-sm">
-                                Hire</div>
+                                Hire</a>
                             <div class="shappe absolute bottom-0 right-0">
                                 <svg width="172" height="133" viewBox="0 0 172 133" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

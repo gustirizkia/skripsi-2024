@@ -20,4 +20,9 @@ class Pengacara extends Model
     {
         return $this->belongsTo(KategoriHukum::class, "kategori_hukum_id", "id");
     }
+
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, "pengacara_id", "id");
+    }
 }
