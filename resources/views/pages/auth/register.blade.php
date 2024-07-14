@@ -53,6 +53,19 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-4">
+                        <div>
+                            <div class="mb-2">
+                                <label for="nomor_whatsapp" class="text-lg font-semibold">Nomor whatsapp</label>
+                            </div>
+                            <div>
+                                <input required type="text" name="nomor_whatsapp" id="nomor_whatsapp"
+                                    autocomplete="off" autofocus value="{{ old('nomor_whatsapp') }}"
+                                    class="border-gray-300 rounded-lg px-2 py-2 bg-green-50 w-full">
+                            </div>
+                        </div>
+                    </div>
                     {{-- password --}}
                     <div class="mt-4 mb-12">
                         <div>
@@ -81,6 +94,27 @@
 
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (Session::get('success'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "{{ Session::get('success') }}"
+            });
+        </script>
+    @endif
+
+    @if (Session::get('error'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                text: "{{ Session::get('error') }}"
+            });
+        </script>
+    @endif
 </body>
 
 </html>

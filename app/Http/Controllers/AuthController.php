@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -38,15 +39,22 @@ class AuthController extends Controller
 
     public function prosesRegister(Request $request)
     {
-        $request->validate([
+        $validasi = Validator::make($request->all(), [
             'name' => "required|string",
             "email" => "email|unique:users,email",
-            "password" => "required|string"
+            "password" => "required|string",
+            "nomor_whatsapp" => "required"
         ]);
+
+        if ($validasi->fails()) {
+            return redirect()
+                ->back()->with("error", $validasi->errors()->first())->withInput();
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'no_whatsapp' => $request->nomor_whatsapp,
             'password' => Hash::make($request->password),
         ]);
 

@@ -39,13 +39,23 @@
             </div>
 
             <div class="mt-8">
+                <div class="font-semibold mb-3">
+                    Tentang
+                </div>
                 <div class="border p-4 rounded-lg">
-                    <p>
-                        Harga biaya hiring pengacara tergantung dari kebutuhan dan kesulitan penangan dari client.
-                        Proses hiring di pantau oleh sistem kami maka itu jangan lakukan transaksi di luar sistem kami. jika
-                        terjadi transaksi di luar
-                        sistem kami tidak bertanggung jawab
-                    </p>
+                    {{-- <p class="whitespace-pre-wrap">{{ $pengacara->tentang }}</p> --}}
+                    <p class="whitespace-pre-wrap tentang">{{ \Illuminate\Support\Str::limit($pengacara->tentang, 150, $end = '...') }} </p>
+
+                    <div class="font-bold cursor-pointer underline text-green-600 load_more">Selengkapnya</div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <div class="font-semibold mb-3">
+                    Sertifikat Advokat
+                </div>
+                <div class="border p-4 rounded-lg">
+                    <img src="{{ asset("storage/$pengacara->sertifikat_advokat") }}" class="h-44 w-44 object-contain" alt="">
                 </div>
             </div>
 
@@ -97,5 +107,17 @@
         $('.money').mask('#.##0', {
             reverse: true
         });
+
+        let load_more = false;
+        $(".load_more").on("click", function(){
+            if (!load_more) {
+                $("p.tentang").text(`{{ $pengacara->tentang }}`)
+            } else {
+                $("p.tentang").text(`{{ \Illuminate\Support\Str::limit($pengacara->tentang, 150, $end = '...') }}`)
+
+            }
+
+            $(".load_more").hide()
+        })
     </script>
 @endpush

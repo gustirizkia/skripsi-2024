@@ -146,10 +146,9 @@ class LawyerController extends Controller
                 $formData["sertifikat_advokat"] = $request->sertifikat_advokat->store("sertifikat_advokat", "public");
             }
 
-            if ($request->foto) {
+            if ($request->foto_profile) {
                 $formData["foto"] = $request->foto_profile->store("foto_profile", "public");
             }
-
 
 
             $insertData = Pengacara::where("id", $id)->update($formData);

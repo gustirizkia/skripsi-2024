@@ -36,6 +36,14 @@ Route::middleware("auth")->group(function () {
         Route::resource("transaksi", UserTransaksiController::class);
         Route::resource("profile", ProfileController::class);
     });
+
+    Route::get('/logout', function () {
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/');
+    })->name('logout');
 });
 
 Route::middleware("guest")->group(function () {
