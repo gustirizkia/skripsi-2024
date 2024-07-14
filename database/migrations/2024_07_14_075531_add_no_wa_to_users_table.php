@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger("no_whatsapp")->after("email");
+            $table->bigInteger("no_whatsapp")->after("username");
             $table->string("roles")->default("user");
         });
     }
@@ -23,7 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn("no_whatsapp")->after("email");
+            $table->dropColumn("no_whatsapp");
+            $table->dropColumn("roles");
         });
     }
 };

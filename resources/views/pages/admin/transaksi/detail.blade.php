@@ -89,6 +89,15 @@
                             </li>
                             <li>
                                 <div class="dropdown-item">
+                                    <a target="_blank"
+                                        href="https://api.whatsapp.com/send/?phone={{ $transaksi->user->no_whatsapp }}&text&type=phone_number&app_absent=0"
+                                        style="color: unset">
+                                        WhatsApp
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-item">
                                     <form action="{{ route('admin.transaksi.update', $transaksi->id) }}" method="post">
                                         @csrf
                                         @method('PUT')

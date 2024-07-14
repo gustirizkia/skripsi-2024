@@ -42,9 +42,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-hijau-custom text-white rounded-lg py-2 px-3 inline-block mt-6">
+                {{-- <div class="bg-hijau-custom text-white rounded-lg py-2 px-3 inline-block mt-6">
                     carikan saya lawyer
-                </div>
+                </div> --}}
             </div>
         </div>
 

@@ -18,11 +18,11 @@ class AuthController extends Controller
     public function prosesLogin(Request $request)
     {
         $request->validate([
-            "email" => "email|exists:users,email",
+            "username" => "exists:users,username",
             "password" => "required|string"
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             $request->session()->regenerate();
 
             return redirect()->intended('home');
@@ -41,7 +41,7 @@ class AuthController extends Controller
     {
         $validasi = Validator::make($request->all(), [
             'name' => "required|string",
-            "email" => "email|unique:users,email",
+            "username" => "string|unique:users,username",
             "password" => "required|string",
             "nomor_whatsapp" => "required"
         ]);
@@ -53,12 +53,12 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->username,
             'no_whatsapp' => $request->nomor_whatsapp,
             'password' => Hash::make($request->password),
         ]);
 
-        if (Auth::attempt(['email' => $user->email, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $user->username, 'password' => $request->password])) {
             $request->session()->regenerate();
 
             return redirect()->intended('home');

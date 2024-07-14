@@ -32,11 +32,11 @@
                     <div>
                         <div>
                             <div class="mb-2">
-                                <label for="email" class="text-lg font-semibold">Email</label>
+                                <label for="email" class="text-lg font-semibold">Username</label>
                             </div>
                             <div>
-                                <input type="text" name="email" id="email" autocomplete="off" autofocus
-                                    value="{{ old('email') }}"
+                                <input type="text" name="username" id="username" autocomplete="off" autofocus
+                                    value="{{ old('username') }}"
                                     class="border-gray-300 rounded-lg px-2 py-2 bg-green-50 w-full">
                             </div>
                         </div>
